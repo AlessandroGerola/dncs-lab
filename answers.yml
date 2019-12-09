@@ -1,0 +1,18 @@
+FirstName: Alessandro
+LastName: Gerola
+MatriculationNumber: 194135
+AcademicYear: 2019-2020
+GitHubUrl: https://github.com/AlessandroGerola/dncs-lab
+Subnets:
+  HostsA:
+    RequiredAddresses: 497
+    SubnetAddress: 10.0.0.0
+    SubnetPrefixLength: 23
+  HostsB:
+    RequiredAddresses: 426
+    SubnetAddress: 10.0.4.0
+    SubnetPrefixLength: 23
+  Hub:
+    RequiredAddresses: 497
+    SubnetAddress: 10.0.6.0
+    SubnetPrefixLength: 23

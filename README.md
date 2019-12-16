@@ -6,37 +6,37 @@ This repository contains the Vagrant files required to run the virtual lab envir
 
         +-----------------------------------------------------+
         |                                                     |
-        |                                                     |eth0
+        |                                                     |enp0s3
         +--+--+                +------------+             +------------+
         |     |                |            |             |            |
-        |     |            eth0|            |eth2     eth2|            |
+        |     |         enp0s3 |       10.0.8.1/30   10.0.8.2/30       |
         |     +----------------+  router-1  +-------------+  router-2  |
-        |     |                |            |             |            |
+        |     |                |            |enp0s9 enp0s9|            |
         |     |                |            |             |            |
         |  M  |                +------------+             +------------+
-        |  A  |                      |eth1                       |eth1
-        |  N  |                      |                           |
+        |  A  |          10.0.0.1/23 | 10.0.0.1/23               |10.0.6.1/23
+        |  N  |                      |enp0s8                     |enp0s8
         |  A  |                      |                           |
         |  G  |                      |                     +-----+----+
-        |  E  |                      |eth1                 |          |
+        |  E  |                      |enp0s8               |          |
         |  M  |            +-------------------+           |          |
-        |  E  |        eth0|                   |           |  host-c  |
+        |  E  |     enp0s3 |                   |           |  host-c  |
         |  N  +------------+      SWITCH       |           |          |
         |  T  |            |                   |           |          |
         |     |            +-------------------+           +----------+
-        |  V  |               |eth2         |eth3                |eth0
+        |  V  |               |enp0s9       |enp0s10             |enp0s3
         |  A  |               |             |                    |
         |  G  |               |             |                    |
-        |  R  |               |eth1         |eth1                |
+        |  R  |               |enp0s8       |enp0s8              |
         |  A  |        +----------+     +----------+             |
         |  N  |        |          |     |          |             |
-        |  T  |    eth0|          |     |          |             |
+        |  T  |  enp0s3|          |     |          |             |
         |     +--------+  host-a  |     |  host-b  |             |
         |     |        |          |     |          |             |
         |     |        |          |     |          |             |
         ++-+--+        +----------+     +----------+             |
-        | |                              |eth0                   |
-        | |                              |                       |
+        | |             10.0.0.2/23      |10.0.4.2/23            |
+        | |                              |enp0s3                 |
         | +------------------------------+                       |
         |                                                        |
         |                                                        |
@@ -117,4 +117,24 @@ The assignment deliverable consists of a Github repository containing:
 
 
 # Design
-[ Your work goes here ]
+Al fine di raggiungere i requisiti richiesti, nel progetto sono stati impegati i seguenti intervalli di indirizzi:
+- host 1-a:	sfrutta indirizzi appartenenti alla sottorete 10.0.0.0/23, in particolare da 10.0.0.2 a 10.0.1.254 sull'interfaccia enp0s8.
+
+- host 1-b:     sfrutta indirizzi appartenenti alla sottorete 10.0.4.0/23, in particolare da 10.0.4.2 a 10.0.5.254 sull'interfaccia enp0s8.
+
+- host 2-c:     sfrutta indirizzi appartenenti alla sottorete 10.0.6.0/23, in particolare da 10.0.6.2 a 10.0.7.254 sull'interfaccia enp0s8.
+
+- router-1:	sfrutta l'indirizzo 10.0.0.1/23 appartenente alla sottorete 10.0.0.0/23 sull'interfaccia enp0s8.
+		sfrutta l'indirizzo 10.0.4.1/23 appartenente alla sottorete 10.0.4.0/23 sull'interfaccia enp0s8.
+		sfrutta l'indirizzo 10.0.8.1/30 appartenente alla sottorete 10.0.8.0/30 sull'interfaccia enp0s9.
+
+- router-2:     sfrutta l'indirizzo 10.0.8.2/30 appartenente alla sottorete 10.0.8.0/30 sull'interfaccia enp0s9.
+                sfrutta l'indirizzo 10.0.6.1/23 appartenente alla sottorete 10.0.6.0/23 sull'interfaccia enp0s8.
+
+Lo switch è connesso ai dispositivi tramite il seguente schema:
+
+	- host 1-a sull' interfaccia enp0s9.
+	- host 1-b sull'interfaccia enp0s10.
+	- router-1 sul'interfaccia enp0s8.
+
+
